@@ -458,3 +458,243 @@ const password = (string) => {
 // console.log(password("hola")) // "h0l4"
 // console.log(password("esta es una prueba")) // "3st43sun4pru3b4"
 // console.log(password("")) // ""
+
+
+/* 21. ENCONTRAR NÚMEROS PARA UN ARREGLO
+- Escribir una función llamada pares que reciba un arreglo de números y retorne un nuevo arreglo con los números pares únicamente.
+*/
+
+const pares = (array) => {
+    let pares = array.filter(e => e % 2 === 0)
+    return pares
+}
+
+// console.log(pares([1, 2, 3, 4, 5, 6])) // [2, 4, 6]
+// console.log(pares([])) // []
+
+/* 22. ENCONTRAR POSICIONES DE NÚMEROS PARES
+- Escribir una función llamada posiciones que reciba un arreglo de números y retorne un nuevo arreglo con las posiciones donde se encuentran números pares
+*/
+
+const posiciones = (array) => {
+    let posPares = []
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] % 2 === 0) {
+            let pos = array.indexOf(array[i])
+            posPares = [...posPares, pos]
+        }
+    }
+    return posPares
+}
+
+// console.log(posiciones([1, 2, 3, 4, 5, 6])) // [1, 3, 5]
+// console.log(posiciones([])) // []
+
+/* 23. DUPLICAR ELEMENTOS DE UN ARREGLO
+- Escribir una función llamada duplicar que reciba un arreglo de números y retorne un nuevo arreglo donde cada número esté multiplicado por dos.
+*/
+
+const duplicar = (numeros) => {
+    let duplicados = []
+    for (const num of numeros) {
+        duplicados = [...duplicados, num*2]
+    }
+    return duplicados
+}
+
+// console.log(duplicar([1, 2, 3])) // [2, 4, 6]
+// console.log(duplicar([])) // []
+
+/* 24. ENCONTRAR PALABRAS QUE EMPIECEN POR "A"
+- Escribir una función llamada empiezanConA que reciba un arreglo de strings y retorne un nuevo arreglo con todas las palabras que empiecen por "a" (mayúscula o minúscula).
+*/
+
+const empiezanConA = (array) => {
+    let palabrasA = []
+    for (const palabra of array) {
+        if (palabra.charAt(0) === 'A' || palabra.charAt(0) === 'a') {
+            palabrasA = [...palabrasA, palabra];
+        }
+    }
+    return palabrasA
+}
+// console.log(empiezanConA(["beta", "alfa", "Arbol", "gama"])) // ["alfa", "Arbol"]
+// console.log(empiezanConA(["beta", "delta", "gama"])) // []
+// console.log(empiezanConA([])) // []
+
+/* 25. ENCONTRAR PALABRAS QUE TERMINAN EN "S"
+- Escribir una función llamada terminanConS que reciba un arreglo de strings y retorne un nuevo arreglo con todas las palabras que terminan con "s" (mayúscula o minúscula).
+*/
+
+const terminanConS = (array) => {
+    let palabrasS = []
+    let indice = 0
+    for (const palabra of array) {
+        indice = palabra.length - 1
+        if (palabra.charAt(indice) === 'S' || palabra.charAt(indice) === 's') {
+            palabrasS = [...palabrasS, palabra];
+        }
+    }
+    return palabrasS
+}
+// console.log(terminanConS(["pruebas", "arroz", "árbol", "tokens"])) // ["pruebas", "tokens"]
+// console.log(terminanConS(["beta", "delta", "gama"])) // []
+// console.log(terminanConS([])) // []
+
+/* 26. IMPRIMIR UNA MATRIZ
+Escribir una función llamada imprimirMatriz que reciba una matriz (un arreglo de arreglos) e imprima todos los elementos del arreglo.
+*/
+
+const imprimirMatriz = (matriz) => {
+    let resultado = "";
+    for (let i = 0; i < matriz.length; i++) {   
+        for (let j = 0; j < matriz[i].length; j++) {
+            resultado = resultado + matriz[i][j] + "\n"
+        }
+    }
+    return resultado
+}
+
+// console.log(imprimirMatriz([
+//     [1, 2, 3],
+//     [4, 5, 6],
+//     [7, 8, 9]
+//   ]))
+
+/* 27. TRADUCIR NÚMEROS A PALABRAS
+- Escribir una función llamada numerosAPalabras que reciba un arreglo de números (cada número en el rango de 0 a 0) y retorne un nuevo arreglo convirtiendo cada número a su versión en palabras.
+*/
+
+const numeros = {
+    0: "cero",
+    1: "uno",
+    2: "dos",
+    3: "tres",
+    4: "cuatro",
+    5: "cinco",
+    6: "seis",
+    7: "siete",
+    8: "ocho",
+    9: "nueve"    
+}
+const numerosAPalabras = (numbers) => {
+    let palabras = []
+    for (const num of numbers) {
+        if (num < 0 || num > 9) {
+            return "Hay un número inválido"
+        }
+        for (const property in numeros) {
+            if (num == property) {
+                palabras = [...palabras, numeros[property]]
+            }
+        }
+    }
+    return palabras
+}
+
+// console.log(numerosAPalabras([0, 1, 2, 3, 4])) // ["cero", "uno", "dos", "tres", "cuatro"]
+// console.log(numerosAPalabras([5, 6, 7, 8, 9])) // ["cinco", "seis", "siete", "ocho", "nueve"]
+
+/* 28. TRADUCIR NÚMEROS A PALABRAS
+- Escribir una función llamada palabrasANumeros que reciba un arreglo de strings y retorne un nuevo arreglo traduciendo cada palabra a su versión numérica (del 0 al 9). Si la palabra no es un número traducir a -1.
+*/
+const palabras = {
+    "cero":     0,
+    "uno":      1,
+    "dos":      2,
+    "tres":     3,
+    "cuatro":   4,
+    "cinco":    5,
+    "seis":     6,
+    "siete":    7,
+    "ocho":     8,
+    "nueve":    9   
+}
+const palabrasANumeros = (words) => {
+    let convertido = []
+    for (const word of words) {
+        let encontrado = false
+        for (const property in palabras) {
+            if (word === property) {
+                convertido = [...convertido, palabras[property]]
+                encontrado = true;
+                break;
+            }
+        }
+        if (!encontrado) {
+            convertido.push(-1);
+        }
+    }
+    return convertido
+}
+
+
+// console.log(palabrasANumeros(["cero", "uno", "dos", "tres", "what?", "cuatro"])) // [0, 1, 2, 3, -1, 4]
+// console.log(palabrasANumeros(["cinco", "seis", "siete", "ocho", "nueve"])) // [5, 6, 7, 8, 9]
+
+/* 29. NÚMERO DE ASTERISCOS EN UN ARREGLO
+- Escribir una función llamada numAsteriscos que reciba un arreglo y retorne el número de asteriscos:
+*/
+
+// const numAsteriscos = (array) => {
+//     let numAsteriscos = 0
+//     for (const e of array) {
+//         if (e === '*') {
+//             numAsteriscos += 1
+//         }
+//     }
+//     return numAsteriscos
+// }
+// console.log(numAsteriscos(['', '*', '', '*'])) // 2
+// console.log(numAsteriscos(['*', '*', '*'])) // 3
+// console.log(numAsteriscos([])) // 0
+
+/* 30. NÚMERO DE ASTERISCOS EN UNA MATRIZ
+- Escribir una función llamada numAsteriscos que reciba una matriz (un arreglo de arreglos) y retorne el número de asteriscos:
+*/
+const numAsteriscos = (matriz) => {
+    let suma = 0;
+    for (let i = 0; i < matriz.length; i++) {   
+        for (let j = 0; j < matriz[i].length; j++) {
+            if (matriz[i][j] === '*') {
+                suma += 1
+            }
+        }
+    }
+    return suma
+}
+// console.log(numAsteriscos([
+//     ['*', '', '*'],
+//     ['', '*', ''],
+//     ['*', '', '*']
+//   ]))
+//   // 5
+
+/* 31. DISTANCIA ENTRE DOS STRINGS
+- Escribir una función llamada distancia que reciba dos strings y retorne el número de caracteres diferentes (comparando posición por posición).
+
+Nota: Puedes asumir que los strings siempre tienen la misma longitud. Sin embargo, si quieres agregarle más dificultad puedes pensar cómo solucionarlo si un string es más largo que el otro (la diferencia entre las longitudes agregaría al resultado).
+*/
+
+const distancia = (string1, string2) => {
+    let word1 = string1.split("")
+    let word2 = string2.split("")
+    let suma = 0;
+    if (word1.length <= word2.length){
+        for (let i = 0; i < word2.length; i++) {
+            if (word1[i] !== word2[i]){
+                suma += 1
+            }
+        }
+    } else if (word2.length < word1.length) {
+        for (let i = 0; i < word1.length; i++) {
+            if (word1[i] !== word2[i]){
+                suma += 1
+            }
+        }
+    }
+    return suma
+}
+// console.log(distancia("hola", "hola")) // 0
+// console.log(distancia("sol", "tol")) // 1
+// console.log(distancia("carro", "correr")) // 3
